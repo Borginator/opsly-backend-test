@@ -8,7 +8,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
-import com.natpryce.hamkrest.*
+import net.minidev.json.JSONArray
+import org.hamcrest.CoreMatchers.isA
 
 
 @SpringBootTest
@@ -24,9 +25,12 @@ class OpslyBackendTestApplicationTests {
     }
 
     @Test
-    fun root_returns_json_with_social_network_fields {
+    fun root_returns_json_with_social_network_fields() {
         JSONObject()
-        mockMvc.perform(get("/")).andExpect(jsonPath("$.facebook", ))
+        mockMvc.perform(get("/"))
+                .andExpect(jsonPath("$.facebook", isA(JSONArray::class.java)))
+                .andExpect(jsonPath("$.twitter", isA(JSONArray::class.java)))
+                .andExpect(jsonPath("$.instagram", isA(JSONArray::class.java)))
     }
 
 }
