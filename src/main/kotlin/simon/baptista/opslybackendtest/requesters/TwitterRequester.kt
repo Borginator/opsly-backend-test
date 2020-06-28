@@ -6,13 +6,11 @@ import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToFlow
-import simon.baptista.opslybackendtest.content.FacebookStatus
-
+import simon.baptista.opslybackendtest.content.Tweet
 
 @RestController
-class FacebookRequester(@Autowired var webClient: WebClient) {
+class TwitterRequester(@Autowired var webClient: WebClient) {
 
-    suspend fun getStatuses(): Flow<Array<FacebookStatus>> =
-        webClient.get().uri("https://takehome.io/facebook").
-        accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlow()
+    suspend fun getTweets(): Flow<Array<Tweet>> = webClient.get().uri("https://takehome.io/twitter").
+    accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlow()
 }
