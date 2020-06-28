@@ -28,6 +28,8 @@ dependencies {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+    testImplementation("com.jayway.jsonpath:json-path")
+    testImplementation("com.natpryce:hamkrest:1.7.0.3")
 }
 
 tasks.withType<Test> {

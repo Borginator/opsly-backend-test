@@ -1,12 +1,14 @@
 package simon.baptista.opslybackendtest
 
+import org.json.JSONObject
 import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
+import com.natpryce.hamkrest.*
 
 
 @SpringBootTest
@@ -19,6 +21,12 @@ class OpslyBackendTestApplicationTests {
     @Test
     fun root_returns_status_is_OK() {
         mockMvc.perform(get("/")).andExpect(status().isOk)
+    }
+
+    @Test
+    fun root_returns_json_with_social_network_fields {
+        JSONObject()
+        mockMvc.perform(get("/")).andExpect(jsonPath("$.facebook", ))
     }
 
 }
