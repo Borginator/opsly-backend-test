@@ -3,11 +3,9 @@ package simon.baptista.opslybackendtest.controllers
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Mono
 
 import simon.baptista.opslybackendtest.content.FacebookStatus
 import simon.baptista.opslybackendtest.content.InstagramPhoto

@@ -28,11 +28,10 @@ class OpslyBackendTestApplicationTests {
 
     @Test
     fun root_returns_json_with_social_network_fields() {
-//        JSONObject()
-//        mockMvc.perform(get("/"))
-//                .andExpect(jsonPath("$.facebook", isA(JSONArray::class.java)))
-//                .andExpect(jsonPath("$.twitter", isA(JSONArray::class.java)))
-//                .andExpect(jsonPath("$.instagram", isA(JSONArray::class.java)))
+        mockMvc.perform(get("/"))
+                .andExpect(jsonPath("$.facebook", isA(JSONArray::class.java)))
+                .andExpect(jsonPath("$.twitter", isA(JSONArray::class.java)))
+                .andExpect(jsonPath("$.instagram", isA(JSONArray::class.java)))
     }
 
 }
