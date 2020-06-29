@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
+import reactor.core.publisher.Mono
 
 import simon.baptista.opslybackendtest.content.FacebookStatus
 import simon.baptista.opslybackendtest.content.InstagramPhoto
@@ -24,16 +25,11 @@ class SummaryController(@Autowired var facebookRequester: FacebookRequester,
 
 
     @GetMapping("/")
-    fun getSummary(): Deferred<Summary?> {
-        return GlobalScope.async {
-            combine(
-                    facebookRequester.getStatuses(),
-                    twitterRequester.getTweets(),
-                    instagramRequester.getInstagramPhotos()
-            ) { statuses, tweets, photos ->
-                Summary(statuses, tweets, photos)
-            }.singleOrNull()
-        }
+    fun getSummary(): Deferred<Summary> {
+        val statuses: Deferred<Array<FacebookStatus>> = GlobalScope.async { facebookRequester.getStatuses() }
+        val tweets: Deferred<Array<Tweet>> = GlobalScope.async { twitterRequester.getTweets() }
+        val photos: Deferred<Array<InstagramPhoto>> = GlobalScope.async { instagramRequester.getInstagramPhotos() }
+        return GlobalScope.async { Summary(statuses.await(), tweets.await(), photos.await()) }
     }
 
 }
