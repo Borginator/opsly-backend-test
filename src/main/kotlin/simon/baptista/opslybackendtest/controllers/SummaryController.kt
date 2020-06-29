@@ -24,10 +24,12 @@ class SummaryController(@Autowired var facebookRequester: FacebookRequester,
 
     @GetMapping("/")
     fun getSummary(): Deferred<Summary> {
-        val statuses: Deferred<Array<FacebookStatus>> = GlobalScope.async { facebookRequester.getStatuses() }
-        val tweets: Deferred<Array<Tweet>> = GlobalScope.async { twitterRequester.getTweets() }
-        val photos: Deferred<Array<InstagramPhoto>> = GlobalScope.async { instagramRequester.getInstagramPhotos() }
-        return GlobalScope.async { Summary(statuses.await(), tweets.await(), photos.await()) }
+        return GlobalScope.async {
+            val statuses= facebookRequester.getStatuses()
+            val tweets= twitterRequester.getTweets()
+            val photos =  instagramRequester.getInstagramPhotos()
+            Summary(statuses, tweets, photos)
+        }
     }
 
 }
