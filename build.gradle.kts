@@ -34,6 +34,7 @@ dependencies {
     testImplementation("com.jayway.jsonpath:json-path")
     testImplementation("com.natpryce:hamkrest:1.7.0.3")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.7.2")
+    testImplementation("com.squareup.okhttp3:okhttp:4.7.2")
 }
 
 tasks.withType<Test> {
