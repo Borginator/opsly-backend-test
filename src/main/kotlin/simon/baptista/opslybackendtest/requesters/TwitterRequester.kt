@@ -11,7 +11,7 @@ import simon.baptista.opslybackendtest.content.Tweet
 @Component
 class TwitterRequester(@Autowired var webClient: WebClient) {
 
-    suspend fun getTweets(): Array<Tweet> = webClient.get().uri("https://takehome.io/twitter").
+    suspend fun getTweets(): Array<Tweet> = webClient.get().uri("/twitter").
     accept(MediaType.APPLICATION_JSON).retrieve()
             .bodyToMono<Array<Tweet>>()
             .onErrorReturn(emptyArray())

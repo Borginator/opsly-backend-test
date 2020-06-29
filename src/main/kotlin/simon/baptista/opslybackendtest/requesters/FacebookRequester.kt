@@ -13,7 +13,7 @@ import simon.baptista.opslybackendtest.content.FacebookStatus
 class FacebookRequester(@Autowired var webClient: WebClient) {
 
     suspend fun getStatuses(): Array<FacebookStatus> =
-        webClient.get().uri("https://takehome.io/facebook").
+        webClient.get().uri("/facebook").
         accept(MediaType.APPLICATION_JSON).retrieve()
                 .bodyToMono<Array<FacebookStatus>>()
                 .onErrorReturn(emptyArray())

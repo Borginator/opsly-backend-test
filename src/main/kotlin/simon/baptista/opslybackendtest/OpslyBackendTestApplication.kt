@@ -13,7 +13,7 @@ class OpslyBackendTestApplication
 class WebClientConfiguration {
 
     @Bean
-    fun webClient() = WebClient.create()
+    fun webClient() = WebClient.create("https://takehome.io")
 
 }
 

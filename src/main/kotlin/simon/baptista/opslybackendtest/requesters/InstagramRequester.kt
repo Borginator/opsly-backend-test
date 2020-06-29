@@ -11,7 +11,7 @@ import simon.baptista.opslybackendtest.content.InstagramPhoto
 @Component
 class InstagramRequester(@Autowired var webClient: WebClient) {
 
-    suspend fun getInstagramPhotos(): Array<InstagramPhoto> = webClient.get().uri("https://takehome.io/instagram").
+    suspend fun getInstagramPhotos(): Array<InstagramPhoto> = webClient.get().uri("/instagram").
     accept(MediaType.APPLICATION_JSON).retrieve()
             .bodyToMono<Array<InstagramPhoto>>()
             .onErrorReturn(emptyArray())
